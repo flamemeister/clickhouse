@@ -1,0 +1,43 @@
+version: '3'
+services:
+  clickhouse-source:
+    image: yandex/clickhouse-server
+    container_name: clickhouse-source
+    ports:
+      - "9000:9000"
+      - "8123:8123"
+    volumes:
+      - ./clickhouse-source-data:/var/lib/clickhouse  # Данные для ClickHouse источника
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+
+  clickhouse-target:
+    image: yandex/clickhouse-server
+    container_name: clickhouse-target
+    ports:
+      - "9001:9000"
+      - "8124:8123"
+    volumes:
+      - ./clickhouse-target-data:/var/lib/clickhouse  # Данные для ClickHouse цели
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+
+  django:
+    build:
+      context: .  # Контекст для сборки Dockerfile
+    container_name: server_clickhouse
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app  # Монтируем код Django
+    ports:
+      - "8000:8000"
+    depends_on:
+      - clickhouse-source
+      - clickhouse-target
+    environment:
+      - DB_HOST=clickhouse-source
+      - DB_PORT=9000

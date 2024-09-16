@@ -1,0 +1,73 @@
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+*.pyd
+*.so
+.Python
+
+# Django
+db.sqlite3
+*.sqlite3
+media/
+staticfiles/
+*.log
+
+# Virtual environments
+venv/
+.env
+*.env
+
+# Docker
+docker-compose.override.yml
+docker-compose.local.yml
+*.pid
+**/docker-compose.override.yml
+**/docker-compose.local.yml
+
+# PyCharm/VSCode
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.cache
+coverage.xml
+*.cover
+.hypothesis/
+
+# Environment variables
+.env
+.venv
+
+# ClickHouse data (избегаем загрузки данных ClickHouse)
+clickhouse-source-data/
+clickhouse-target-data/
+
+# MySQL/Docker SQL dumps
+*.sql
+*.sql.gz
+
+# MacOS / Windows
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+*.out
+*.err
+
+# Local development files
+*.local
+*.env
+env/
