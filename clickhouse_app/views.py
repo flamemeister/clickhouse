@@ -12,7 +12,7 @@ DUMP_DIR = 'dumps/'
 # Подключение к источнику данных (ClickHouse на порту 9000)
 def get_source_client():
     return Client(
-        host='clickhouse-source',  # укажи реальный IP или имя хоста контейнера
+        host='clickhouse-source',  
         port=9000,
         user='default',
         password='',
@@ -22,7 +22,7 @@ def get_source_client():
 # Подключение к целевой базе данных (ClickHouse на порту 9001)
 def get_target_client():
     return Client(
-        host='clickhouse-target',  # укажи реальный IP или имя хоста контейнера
+        host='clickhouse-target', 
         port=9000,
         user='default',
         password='',
